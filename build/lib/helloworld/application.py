@@ -66,8 +66,8 @@ def get_frm():
     resp = table.scan()
     print(str(resp))
     return Response(json.dumps(str(resp['Items'])), mimetype='application/json', status=200)
-    
-# curl -i -X POST -d'{"form_title":"form title1", "form_body":"where is it?", "form_type":"finance"}' -H "Content-Type: application/json" http://localhost:5000/set_form/frm5
+# curl -i -X POST -d'{"form_title":"form title1", "form_body":"where is it?", "form_type":"finance"}' -H "Content-Type: application/json" http://localhost:5000/set_form/frm4
+
 @application.route('/set_form/<frm_id>', methods=['POST'])
 def set_doc(frm_id):
     dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
@@ -91,22 +91,5 @@ def set_doc(frm_id):
     
     return Response(json.dumps(item), mimetype='application/json', status=200)
     
-# curl -i http://"localhost:5000/del_form?frm_id=frm4&frm_type=finance"
-@application.route('/del_form', methods=['GET'])
-def del_doc():
-    frm_id = request.args.get('frm_id')
-    frm_type = request.args.get('frm_type')
-    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
-    table = dynamodb.Table('forms')
-
-    
-    table.delete_item(
-    Key={
-    'form_id': frm_id,
-    'form_type': frm_type
-     }
-     )
-    
-if __name__ == '__main__':
+if __name__ == '_main_':
     flaskrun(application)
-    
