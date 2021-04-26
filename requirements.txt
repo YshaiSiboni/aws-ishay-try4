@@ -6,7 +6,6 @@ click==8.0.0rc1
 dataclasses==0.8
 Flask==2.0.0rc1
 Flask-Cors==3.0.10
-helloworld==0.0.0
 idna==2.10
 itsdangerous==2.0.0rc2
 Jinja2==3.0.0rc1
